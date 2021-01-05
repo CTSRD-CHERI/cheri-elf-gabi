@@ -15,7 +15,7 @@ Type                    | Name
 ------------------------|----------------------------------------------
 0x0                     | [NT_CHERI_GLOBALS_ABI](#nt-cheri-globals-abi)
 0x1                     | [NT_CHERI_TLS_ABI](#nt-cheri-tls-abi)
-0x7fffffff - 0xffffffff | -- (Reserved for processor-specific use)
+0x80000000 - 0xffffffff | -- (Reserved for processor-specific use)
 
 ## <a name=nt-cheri-globals-abi></a> NT_CHERI_GLOBALS_ABI
 
@@ -28,7 +28,7 @@ Type                    | Name
 0x0                     | CHERI_GLOBALS_ABI_PCREL
 0x1                     | CHERI_GLOBALS_ABI_PLT_FPTR
 0x2                     | CHERI_GLOBALS_ABI_FDESC
-0x7fffffff - 0xffffffff | -- (Reserved for processor-specific use)
+0x80000000 - 0xffffffff | -- (Reserved for processor-specific use)
 
 * CHERI_GLOBALS_ABI_PCREL: Capabilities for globals are obtained by indexing a
   table relative to the program counter. Function pointers are sealed entry
@@ -56,7 +56,7 @@ following variants defined:
 Type                    | Name
 ------------------------|----------------------------------------------
 0x0                     | CHERI_TLS_ABI_TRAD
-0x7fffffff - 0xffffffff | -- (Reserved for processor-specific use)
+0x80000000 - 0xffffffff | -- (Reserved for processor-specific use)
 
 * CHERI_TLS_ABI_TRAD: Capabilities for thread-locals are obtained using
   traditional TLS Variant I or II with pointers implemented using capabilities.
