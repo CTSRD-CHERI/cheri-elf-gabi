@@ -8,7 +8,7 @@ known as the ELF gABI specification.
 
 # <a name=note-section></a> Note Section
 
-All generic CHERI notes havea Name Size of 6 and a Name of `"CHERI\0"`. The
+All generic CHERI notes have a Name Size of 6 and a Name of `"CHERI\0"`. The
 following notes are defined:
 
 Type                    | Name
