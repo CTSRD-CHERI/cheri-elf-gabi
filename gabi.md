@@ -38,7 +38,9 @@ Type                    | Name
   a table pointed to by a reserved register or equivalent that is defined on
   entry to functions. Function pointers are sealed entry capabilities to
   trampolines that install the correct value for the target. Whether the old
-  value is saved by the caller or trampoline, and how, is processor-specific.
+  value is saved by the caller, trampoline or callee, and how, is
+  processor-specific, and more than one variant may exist differentiated in the
+  ELF file in a processor-specific manner.
 
 * CHERI_GLOBALS_ABI_FDESC: Capabilities for globals are obtained by indexing a
   table pointed to by a reserved register or equivalent that is defined on
