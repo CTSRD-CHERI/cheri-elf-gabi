@@ -1,14 +1,14 @@
 # CHERI ELF gABI Extensions
 
-This document is based on the System V Application Binary Interface, otherwise
-known as the ELF gABI specification.
+This document is based on the System V Application Binary Interface, otherwise known as the ELF gABI specification.
 
 ## Table of Contents
 1. [Note Section](#note-section)
 
 # <a name=note-section></a> Note Section
 
-All generic CHERI notes have a Name Size of 6 and a Name of `"CHERI\0"`. The
+CHERI notes are located in an SHT_NOTE section with name `.note.cheri`. All
+generic CHERI notes have a Name Size of 6 and a Name of `"CHERI\0"`. The
 following notes are defined:
 
 Type                    | Name
