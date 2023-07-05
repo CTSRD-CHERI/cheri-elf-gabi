@@ -1,6 +1,7 @@
 # CHERI ELF gABI Extensions
 
-This document is based on the System V Application Binary Interface, otherwise known as the ELF gABI specification.
+This document is based on the System V Application Binary Interface, otherwise
+known as the ELF gABI specification.
 
 ## Table of Contents
 1. [Note Section](#note-section)
