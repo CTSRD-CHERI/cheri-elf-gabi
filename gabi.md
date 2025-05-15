@@ -5,6 +5,8 @@ known as the ELF gABI specification.
 
 ## Table of Contents
 1. [Note Section](#note-section)
+2. [Program Header Table](#program-headers)
+3. [Dynamic Table](#dynamic-table)
 
 # <a name=note-section></a> Note Section
 
@@ -59,9 +61,32 @@ following variants defined:
 Type                    | Name
 ------------------------|----------------------------------------------
 0x0                     | CHERI_TLS_ABI_TRAD
+0x1                     | CHERI_TLS_ABI_TGOT
 0x80000000 - 0xffffffff | -- (Reserved for processor-specific use)
 
 * CHERI_TLS_ABI_TRAD: Capabilities for thread-locals are obtained using
   traditional TLS Variant I or II with pointers implemented using capabilities.
 
+* CHERI_TLS_ABI_TGOT: Capabilities for thread-locals are obtained using a
+  Thread Global Offset Table ("TGOT") wih pointers implemented using
+  capabilities.
+
 The set of variants supported is processor-specific.
+
+# <a name=program-headers></a> Program Header Table
+
+CHERI adds the following segment types:
+
+Name                      | Value      | Description
+--------------------------|------------|-------------------------------------
+PT_CHERI_TGOT             | 0x64348451 | TGOT template
+
+# <a name=dynamic-table></a> Dynamic Table
+
+CHERI adds the following dynamic table entries:
+
+Enum       | ELF Dynamic Tab              | Description
+-----------|------------------------------|-------------------------------------
+0x64348450 | DT_CHERI_TGOTREL             | Start of the TGOT template relocations
+0x64348451 | DT_CHERI_TGOTRELT            | Type of relocation used for the TGOT template
+0x64348453 | DT_CHERI_TGOTRELSZ           | Total size in bytes of the TGOT template relocations
