@@ -5,8 +5,9 @@ known as the ELF gABI specification.
 
 ## Table of Contents
 1. [Note Section](#note-section)
-2. [Program Header Table](#program-headers)
-3. [Dynamic Table](#dynamic-table)
+2. [C18n String Table](#c18n-strtab)
+3. [Program Header Table](#program-headers)
+4. [Dynamic Table](#dynamic-table)
 
 # <a name=note-section></a> Note Section
 
@@ -73,14 +74,25 @@ Type                    | Name
 
 The set of variants supported is processor-specific.
 
+# <a name=c18n-strtab></a> C18n String Table
+
+CHERI compartmentalization adds a new string table in a section named
+`.c18nstrtab` containing strings such as sub-object compartment names.
+
 # <a name=program-headers></a> Program Header Table
 
 CHERI adds the following segment types:
 
 Name                      | Value      | Description
 --------------------------|------------|-------------------------------------
+PT_C18N_NAME              | 0x64331380 | Sub-object compartment
 PT_CHERI_PCC              | 0x64348450 | PCC bounds
 PT_CHERI_TGOT             | 0x64348451 | TGOT template
+
+* PT_C18N_NAME describes a range of virtual addresses belonging to a
+  named compartment.  Most fields are similar to PT_GNU_RELRO except
+  for `p_paddr` which holds the offset of the nul-terminated ASCII
+  compartment name in the c18n string table.
 
 * PT_CHERI_PCC is similar to PT_GNU_RELRO in that it describes a property
   of an existing virtual address range.  Specifically, capabilities for
@@ -95,6 +107,8 @@ CHERI adds the following dynamic table entries:
 
 Enum       | ELF Dynamic Tab              | Description
 -----------|------------------------------|-------------------------------------
+0x64331380 | DT_C18N_STRTAB               | Start of the c18n string table
+0x64331381 | DT_C18N_STRTABSZ             | Total size in bytes of the c18n string table
 0x64348450 | DT_CHERI_TGOTREL             | Start of the TGOT template relocations
 0x64348451 | DT_CHERI_TGOTRELT            | Type of relocation used for the TGOT template
 0x64348453 | DT_CHERI_TGOTRELSZ           | Total size in bytes of the TGOT template relocations
