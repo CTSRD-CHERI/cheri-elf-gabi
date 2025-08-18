@@ -79,7 +79,15 @@ CHERI adds the following segment types:
 
 Name                      | Value      | Description
 --------------------------|------------|-------------------------------------
+PT_CHERI_PCC              | 0x64348450 | PCC bounds
 PT_CHERI_TGOT             | 0x64348451 | TGOT template
+
+* PT_CHERI_PCC is similar to PT_GNU_RELRO in that it describes a property
+  of an existing virtual address range.  Specifically, capabilities for
+  code pointers should use the bounds of the PT_CHERI_PCC segment which
+  contains the pointer's target address.  The static linker must ensure
+  that the bounds are precise.  If necessary, the static linker must
+  insert suitable padding.
 
 # <a name=dynamic-table></a> Dynamic Table
 
